@@ -22,20 +22,22 @@
           ></b-form-select>
         </template>
         <template v-slot:right>
-          <b-card
-            v-for="(a, index) in articles"
-            :key="index"
-            :title="a.title"
-            :img-src="(Array.isArray(a.multimedia) && a.multimedia.length > 0 && a.multimedia[a.multimedia.length-1].url) || ''"
-            img-bottom
-          >
-            <b-card-text>
-              <p>{{a.byline}}</p>
-              <p>Published on: {{new Date(a.published_date) | dateFormat('YYYY.MM.DD hh:mm a')}}</p>
-              <p>{{a.abstract}}</p>
-            </b-card-text>
-            <b-button :href="a.short_url" variant="primary" target="_blank">Go</b-button>
-          </b-card>
+          <div class="row">
+            <div class="col-md-4 mb-3" v-for="(a, index) in articles" :key="index">
+              <b-card
+                :title="a.title"
+                :img-src="(Array.isArray(a.multimedia) && a.multimedia.length > 0 && a.multimedia[a.multimedia.length-1].url) || ''"
+                img-top
+              >
+                <b-card-text>
+                  <p>{{a.byline}}</p>
+                  <p>Published on: {{new Date(a.published_date) | dateFormat('YYYY.MM.DD hh:mm a')}}</p>
+                  <p>{{a.abstract}}</p>
+                </b-card-text>
+                <b-button :href="a.short_url" variant="primary" target="_blank">Go</b-button>
+              </b-card>
+            </div>
+          </div>
         </template>
       </BaseLayout>
     </div>
